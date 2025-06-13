@@ -1,7 +1,8 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.options.range.OptionRange;
 import net.minecraft.client.InputType;
@@ -58,12 +59,13 @@ public class RangeOptionWidget extends BaseWidget {
     @Override
     public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         updateIfFocused();
+        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
 
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.BUTTON, getX(), getY(), this.width, this.height);
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.BUTTON_HOVER, getX() + this.padding, getY() + 5, this.width - this.padding * 2, this.height - 10);
+        graphics.blitSprite(RenderType::guiTextured, theme.getButton(), getX(), getY(), this.width, this.height);
+        graphics.blitSprite(RenderType::guiTextured, theme.getButtonHover(), getX() + this.padding, getY() + 5, this.width - this.padding * 2, this.height - 10);
 
         int sliderX = getX() + this.padding + (int) ((this.width - this.padding * 2) * this.getter.getAsDouble()) - (this.height - 6) / 2;
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.CONTAINER, sliderX, getY() + 4, this.height - 8, this.height - 8);
+        graphics.blitSprite(RenderType::guiTextured, theme.getContainer(), sliderX, getY() + 4, this.height - 8, this.height - 8);
 
         Component tooltip = null;
 

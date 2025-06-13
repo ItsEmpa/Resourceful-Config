@@ -1,7 +1,7 @@
 package com.teamresourceful.resourcefulconfig.client.components.base;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
@@ -24,7 +24,7 @@ public class CustomButton extends AbstractButton {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        ResourceLocation button = isHovered() ? ModSprites.BUTTON_HOVER : ModSprites.BUTTON;
+        ResourceLocation button = ResourcefulConfigActiveTheme.current.ofButton(isHovered());
         graphics.blitSprite(RenderType::guiTextured, button, getX(), getY(), getWidth(), getHeight());
         renderScrollingString(
             graphics, Minecraft.getInstance().font,

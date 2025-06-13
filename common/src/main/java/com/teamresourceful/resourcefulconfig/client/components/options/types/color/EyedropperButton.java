@@ -1,7 +1,7 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types.color;
 
 import com.mojang.blaze3d.platform.NativeImage;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
 import com.teamresourceful.resourcefulconfig.client.components.base.SpriteButton;
 import com.teamresourceful.resourcefulconfig.client.screens.base.OverlayScreen;
 import net.minecraft.client.Minecraft;
@@ -19,7 +19,7 @@ public class EyedropperButton extends SpriteButton {
     private static final ResourceLocation SCREEN_TEXTURE = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "dynamic/screen");
 
     public EyedropperButton(HsbState state) {
-        super(12, 12, 2, ModSprites.EYE_DROPPER, () -> {
+        super(12, 12, 2, ResourcefulConfigActiveTheme.current.getEyeDropper(), () -> {
             Minecraft minecraft = Minecraft.getInstance();
             Screenshot.takeScreenshot(minecraft.getMainRenderTarget(), image -> {
                 DynamicTexture texture = new DynamicTexture(() -> "Resourceful Config Eyedropper Screenshot", image);
@@ -89,7 +89,8 @@ public class EyedropperButton extends SpriteButton {
             double guiScale = Minecraft.getInstance().getWindow().getGuiScale();
             int pixelX = (int) (mouseX * guiScale);
             int pixelY = (int) (mouseY * guiScale);
-            if (pixelX < 0 || pixelY < 0 || pixelX >= this.image.getWidth() || pixelY >= this.image.getHeight()) return false;
+            if (pixelX < 0 || pixelY < 0 || pixelX >= this.image.getWidth() || pixelY >= this.image.getHeight())
+                return false;
             this.state.set(HsbColor.fromRgb(this.image.getPixel(pixelX, pixelY)));
             this.onClose();
             return true;

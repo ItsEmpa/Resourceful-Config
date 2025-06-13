@@ -1,10 +1,10 @@
 package com.teamresourceful.resourcefulconfig.client.components.header;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.api.types.info.ResourcefulConfigInfoButton;
 import com.teamresourceful.resourcefulconfig.api.types.info.ResourcefulConfigLink;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.ContainerWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.SpriteButton;
 import net.minecraft.client.Minecraft;
@@ -51,7 +51,7 @@ public class HeaderContentWidget extends ContainerWidget {
         for (ResourcefulConfigLink link : config.info().links()) {
             SpriteButton button = SpriteButton.builder(12, 12)
                     .padding(2)
-                    .sprite(ModSprites.ofIcon(link.icon()))
+                    .sprite(ResourcefulConfigActiveTheme.current.ofIcon(link.icon()))
                     .onPress(() -> {
                         Screen screen = Minecraft.getInstance().screen;
                         if (screen == null) return;
@@ -65,7 +65,7 @@ public class HeaderContentWidget extends ContainerWidget {
         for (ResourcefulConfigInfoButton infoButton : config.info().buttons()) {
             SpriteButton button = SpriteButton.builder(12, 12)
                     .padding(2)
-                    .sprite(ModSprites.ofIcon(infoButton.icon()))
+                    .sprite(ResourcefulConfigActiveTheme.current.ofIcon(infoButton.icon()))
                     .onPress(infoButton::onClick)
                     .tooltip(infoButton.text().toComponent())
                     .build();
@@ -82,7 +82,7 @@ public class HeaderContentWidget extends ContainerWidget {
 
     @Override
     public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.CONTAINER, getX(), getY(), width, height);
+        graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getContainer(), getX(), getY(), width, height);
         super.renderWidget(graphics, mouseX, mouseY, partialTicks);
     }
 

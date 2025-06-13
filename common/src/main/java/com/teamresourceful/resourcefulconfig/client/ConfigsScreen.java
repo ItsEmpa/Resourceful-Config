@@ -1,5 +1,7 @@
 package com.teamresourceful.resourcefulconfig.client;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.client.components.configs.ConfigHeaderItem;
 import com.teamresourceful.resourcefulconfig.client.components.configs.ConfigItem;
@@ -8,6 +10,7 @@ import com.teamresourceful.resourcefulconfig.common.config.Configurations;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.CommonComponents;
 import org.jetbrains.annotations.Nullable;
 
@@ -62,7 +65,8 @@ public class ConfigsScreen extends Screen {
 
     @Override
     public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.fill(0, 0, this.width, this.height, UIConstants.BACKGROUND);
+        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
+        graphics.blitSprite(RenderType::guiTextured, theme.getBackground(), 0, 0, this.width, this.height);
     }
 
     @Override

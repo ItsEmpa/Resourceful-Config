@@ -1,8 +1,9 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.info.Translatable;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import com.teamresourceful.resourcefulconfig.client.screens.base.OverlayScreen;
@@ -38,14 +39,15 @@ public class SelectWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.ofButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
+        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
+        graphics.blitSprite(RenderType::guiTextured, theme.ofButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
         renderScrollingString(
                 graphics, this.font, this.heading,
                 getX() + 4, getY() + 4,
                 getX() + getWidth() - 16, getY() + getHeight() - 4,
                 UIConstants.TEXT_PARAGRAPH
         );
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.CHEVRON_DOWN, getX() + getWidth() - 12, getY() + 4, 8, 8);
+        graphics.blitSprite(RenderType::guiTextured, theme.getChevronDown(), getX() + getWidth() - 12, getY() + 4, 8, 8);
     }
 
     @Override
@@ -128,8 +130,9 @@ public class SelectWidget extends BaseWidget {
 
         @Override
         public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-            graphics.blitSprite(RenderType::guiTextured, ModSprites.ACCENT, getX() - 1, getY() - 1, getWidth() + 2, getHeight() + 2);
-            graphics.blitSprite(RenderType::guiTextured, ModSprites.BUTTON, getX(), getY(), getWidth(), getHeight());
+            ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
+            graphics.blitSprite(RenderType::guiTextured, theme.getAccent(), getX() - 1, getY() - 1, getWidth() + 2, getHeight() + 2);
+            graphics.blitSprite(RenderType::guiTextured, theme.getButton(), getX(), getY(), getWidth(), getHeight());
             super.renderWidget(graphics, mouseX, mouseY, partialTicks);
         }
     }
@@ -153,9 +156,10 @@ public class SelectWidget extends BaseWidget {
 
         @Override
         protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-            graphics.blitSprite(RenderType::guiTextured, ModSprites.ofButton(this.isHovered()), getX() + 1, getY(), getWidth() - 1, getHeight());
+            ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
+            graphics.blitSprite(RenderType::guiTextured, theme.ofButton(this.isHovered()), getX() + 1, getY(), getWidth() - 1, getHeight());
             if (this.selected.getAsBoolean()) {
-                graphics.blitSprite(RenderType::guiTextured, ModSprites.CHECK, getX() + 4, getY() + 2, 8, 8);
+                graphics.blitSprite(RenderType::guiTextured, theme.getCheck(), getX() + 4, getY() + 2, 8, 8);
             }
             int color = this.isHovered() ? UIConstants.TEXT_TITLE : UIConstants.TEXT_PARAGRAPH;
 

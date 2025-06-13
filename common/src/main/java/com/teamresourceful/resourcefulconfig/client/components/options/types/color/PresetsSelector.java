@@ -1,6 +1,7 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types.color;
 
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.options.types.ColorOptionWidget;
 import com.teamresourceful.resourcefulconfig.client.utils.State;
@@ -66,8 +67,9 @@ public class PresetsSelector extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.ACCENT, this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.BUTTON, this.getX() + 1, this.getX() + 1, this.getWidth() - 2, this.getHeight() - 2);
+        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
+        graphics.blitSprite(RenderType::guiTextured, theme.getAccent(), this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        graphics.blitSprite(RenderType::guiTextured, theme.getAccent(), this.getX() + 1, this.getX() + 1, this.getWidth() - 2, this.getHeight() - 2);
 
         int size = (this.getWidth() - 18) / 8;
 

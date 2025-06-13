@@ -1,8 +1,8 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.utils.KeyCodeHelper;
 import net.minecraft.client.gui.GuiGraphics;
@@ -45,7 +45,7 @@ public class KeybindOptionWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.BUTTON, getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getButton(), getX(), getY(), getWidth(), getHeight());
 
         renderScrollingString(
             graphics, this.font, getDisplay(),

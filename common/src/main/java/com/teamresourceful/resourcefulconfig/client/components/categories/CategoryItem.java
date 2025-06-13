@@ -1,9 +1,9 @@
 package com.teamresourceful.resourcefulconfig.client.components.categories;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.client.ConfigScreen;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import net.minecraft.client.Minecraft;
@@ -32,7 +32,7 @@ public class CategoryItem extends BaseWidget implements ListWidget.Item {
     @Override
     public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         if (this.isHovered()) {
-            graphics.blitSprite(RenderType::guiTextured, ModSprites.BUTTON_HOVER, getX() + 1, getY(), getWidth() - 2, getHeight());
+            graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getButtonHover(), getX() + 1, getY(), getWidth() - 2, getHeight());
         }
         int color = this.isHovered() ? UIConstants.TEXT_TITLE : UIConstants.TEXT_PARAGRAPH;
         renderScrollingString(

@@ -1,9 +1,9 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.range;
 
 import com.teamresourceful.resourcefulconfig.api.annotations.ConfigOption;
-import com.teamresourceful.resourcefulconfig.api.types.options.Option;
-import com.teamresourceful.resourcefulconfig.api.types.options.EntryData;
 import com.teamresourceful.resourcefulconfig.api.types.entries.ResourcefulConfigValueEntry;
+import com.teamresourceful.resourcefulconfig.api.types.options.EntryData;
+import com.teamresourceful.resourcefulconfig.api.types.options.Option;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 

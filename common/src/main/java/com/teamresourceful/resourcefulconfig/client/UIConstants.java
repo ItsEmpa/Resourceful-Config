@@ -5,6 +5,7 @@ import net.minecraft.network.chat.Component;
 
 public class UIConstants {
 
+    @Deprecated
     public static final int BACKGROUND = 0xFF131517;
     public static final int TEXT_TITLE = 0xFFFAF9F6;
     public static final int TEXT_PARAGRAPH = 0xFF727478;

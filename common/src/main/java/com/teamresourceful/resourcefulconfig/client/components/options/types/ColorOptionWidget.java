@@ -1,7 +1,8 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.info.Translatable;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.options.types.color.*;
 import com.teamresourceful.resourcefulconfig.client.screens.base.CloseableScreen;
@@ -40,7 +41,7 @@ public class ColorOptionWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.BUTTON, getX(), getY(), this.height, this.height);
+        graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getButton(), getX(), getY(), this.height, this.height);
         graphics.fill(getX() + 1, getY() + 1, getX() + this.height - 1, getY() + this.height - 1, this.getter.getAsInt());
     }
 
@@ -113,8 +114,9 @@ public class ColorOptionWidget extends BaseWidget {
         @Override
         public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
             super.renderBackground(graphics, mouseX, mouseY, partialTicks);
-            graphics.blitSprite(RenderType::guiTextured, ModSprites.ACCENT, this.x, this.y, this.width, this.height);
-            graphics.blitSprite(RenderType::guiTextured, ModSprites.BUTTON, this.x + 1, this.y + 1, this.width - 2, this.height - 2);
+            ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
+            graphics.blitSprite(RenderType::guiTextured, theme.getAccent(), this.x, this.y, this.width, this.height);
+            graphics.blitSprite(RenderType::guiTextured, theme.getButton(), this.x + 1, this.y + 1, this.width - 2, this.height - 2);
         }
 
         @Override

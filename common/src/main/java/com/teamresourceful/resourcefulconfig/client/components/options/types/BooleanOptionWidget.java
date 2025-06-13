@@ -1,7 +1,8 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import it.unimi.dsi.fastutil.booleans.BooleanConsumer;
 import net.minecraft.client.gui.Font;
@@ -35,8 +36,9 @@ public class BooleanOptionWidget extends BaseWidget {
         int onX = getX() + 1 + HALF_WIDTH;
         int color = value ? UIConstants.TEXT_PARAGRAPH : UIConstants.TEXT_TITLE;
 
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.BUTTON, getX(), getY(), this.width, this.height);
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.ofSwitch(value), value ? onX : offX, getY() + 1, SWITCH_WIDTH, this.height - 2);
+        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
+        graphics.blitSprite(RenderType::guiTextured, theme.getButton(), getX(), getY(), this.width, this.height);
+        graphics.blitSprite(RenderType::guiTextured, theme.ofSwitch(value), value ? onX : offX, getY() + 1, SWITCH_WIDTH, this.height - 2);
         drawCenteredString(graphics, this.font, CommonComponents.OPTION_OFF, offX + HALF_SWITCH_WIDTH, getY() + 4, color, value && isHovered());
         drawCenteredString(graphics, this.font, CommonComponents.OPTION_ON, onX + HALF_SWITCH_WIDTH, getY() + 4, color, !value && isHovered());
     }

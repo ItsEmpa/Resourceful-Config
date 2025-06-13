@@ -1,9 +1,9 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.misc.draggable;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
 import com.teamresourceful.resourcefulconfig.api.types.info.TooltipProvider;
 import com.teamresourceful.resourcefulconfig.api.types.info.Translatable;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import net.minecraft.client.gui.GuiGraphics;
@@ -28,16 +28,16 @@ public class DraggableItem<T> extends BaseWidget implements ListWidget.Item {
     public void render(GuiGraphics graphics, int x, int y, int mouseX, int mouseY, boolean hovered, boolean dragging, boolean canDelete) {
         graphics.blitSprite(
                 RenderType::guiTextured,
-                ModSprites.ofButton(hovered && !dragging),
+                ResourcefulConfigActiveTheme.current.ofButton(hovered && !dragging),
                 x, y, getWidth(), getHeight()
         );
         if (!dragging && hovered) {
-            graphics.blitSprite(RenderType::guiTextured, ModSprites.DRAGGABLE, x + 4, y + 4, 8, 8);
+            graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getDraggable(), x + 4, y + 4, 8, 8);
         }
         if (!dragging && hovered) {
             boolean hoveringDelete = x + getWidth() - 16 <= mouseX;
             if (canDelete) {
-                graphics.blitSprite(RenderType::guiTextured, ModSprites.DELETE, x + getWidth() - 12, y + 4, 8, 8);
+                graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getDelete(), x + getWidth() - 12, y + 4, 8, 8);
                 if (this.minecraft.screen != null && hoveringDelete) {
                     this.minecraft.screen.setTooltipForNextRenderPass(Component.literal("Remove"));
                 }
@@ -59,7 +59,7 @@ public class DraggableItem<T> extends BaseWidget implements ListWidget.Item {
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         if (this.list.isDraggingItem() && this.list.getDraggingItem() == this) {
-            graphics.blitSprite(RenderType::guiTextured, ModSprites.ofButton(true), getX() + 1, getY(), getWidth() - 1, getHeight());
+            graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.ofButton(true), getX() + 1, getY(), getWidth() - 1, getHeight());
         } else {
             render(graphics, getX(), getY(), mouseX, mouseY, this.isHovered(), this.list.isDraggingItem(), this.list.canDelete());
         }

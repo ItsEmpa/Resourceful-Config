@@ -1,8 +1,9 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.entries.ResourcefulConfigObjectEntry;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.options.Options;
 import com.teamresourceful.resourcefulconfig.client.components.options.OptionsListWidget;
@@ -27,13 +28,14 @@ public class ObjectOptionWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.ofButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
+        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
+        graphics.blitSprite(RenderType::guiTextured, theme.ofButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
 
         int contentWidth = font.width(UIConstants.EDIT) + SPACING + SIZE;
 
         graphics.blitSprite(
                 RenderType::guiTextured,
-                ModSprites.EDIT,
+                theme.getEdit(),
                 getX() + (getWidth() - contentWidth) / 2, getY() + PADDING,
                 SIZE, SIZE
         );

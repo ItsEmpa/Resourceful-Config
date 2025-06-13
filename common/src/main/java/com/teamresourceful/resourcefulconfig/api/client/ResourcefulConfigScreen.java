@@ -1,6 +1,8 @@
 package com.teamresourceful.resourcefulconfig.api.client;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigThemeDefault;
 import com.teamresourceful.resourcefulconfig.api.loader.Configurator;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.client.ConfigScreen;
 import com.teamresourceful.resourcefulconfig.client.ConfigsScreen;
@@ -32,10 +34,21 @@ public class ResourcefulConfigScreen {
 
     /**
      * Gets a screen for the given config.
+     */
+    public static Screen get(@Nullable Screen parent, ResourcefulConfig config, ResourcefulConfigTheme theme) {
+        return new ConfigScreen(parent, config, theme);
+    }
+
+    /**
+     * Gets a screen for the given config.
      * @param termCollector A function that collects additional terms for a given string. ie. color -> ["colour"]
      */
     public static Screen get(@Nullable Screen parent, ResourcefulConfig config, Function<String, List<String>> termCollector) {
         return new ConfigScreen(parent, config, termCollector);
+    }
+
+    public static Screen get(@Nullable Screen parent, String mod, ResourcefulConfigTheme theme) {
+        return new ConfigsScreen(parent, mod);
     }
 
     public static Screen get(@Nullable Screen parent, String mod) {
@@ -43,6 +56,10 @@ public class ResourcefulConfigScreen {
     }
 
     public static Function<@Nullable Screen, Screen> getFactory(String mod) {
+        return getFactory(mod, ResourcefulConfigThemeDefault.INSTANCE);
+    }
+
+    public static Function<@Nullable Screen, Screen> getFactory(String mod, ResourcefulConfigTheme theme) {
         Set<String> configs = Configurations.INSTANCE.getConfigsForMod(mod);
         if (configs.size() != 1) {
             var nonHiddenCount = configs.stream()
@@ -50,11 +67,11 @@ public class ResourcefulConfigScreen {
                     .filter(it -> !it.info().isHidden())
                     .count();
 
-            if (nonHiddenCount != 1) return screen -> get(screen, mod);
+            if (nonHiddenCount != 1) return screen -> get(screen, mod, theme);
         }
 
-        if (configs.isEmpty()) return screen -> get(screen, mod);
+        if (configs.isEmpty()) return screen -> get(screen, mod, theme);
         ResourcefulConfig config = Configurations.INSTANCE.getConfig(configs.iterator().next());
-        return config == null ? Function.identity() : screen -> get(screen, config);
+        return config == null ? Function.identity() : screen -> get(screen, config, theme);
     }
 }

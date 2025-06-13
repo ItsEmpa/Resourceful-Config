@@ -1,6 +1,7 @@
 package com.teamresourceful.resourcefulconfig.client.screens.base;
 
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.client.components.base.SpriteButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -42,7 +43,7 @@ public class ModalOverlay extends OverlayScreen {
         header.addChild(new StringWidget(title, this.font), LayoutSettings::alignVerticallyMiddle);
         header.addChild(
                 SpriteButton.builder(12, 12)
-                        .sprite(ModSprites.CROSS)
+                        .sprite(ResourcefulConfigActiveTheme.current.getCross())
                         .padding(2)
                         .tooltip(CommonComponents.GUI_CANCEL)
                         .onPress(this::onClose)
@@ -70,8 +71,9 @@ public class ModalOverlay extends OverlayScreen {
         super.renderBackground(graphics, mouseX, mouseY, partialTicks);
         renderTransparentBackground(graphics);
 
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.CONTAINER, this.modalLeft, this.modalTop, this.modalWidth, this.modalHeight);
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.HEADER, this.modalLeft, this.modalTop, this.modalWidth, 20 + PADDING * 2);
+        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
+        graphics.blitSprite(RenderType::guiTextured, theme.getContainer(), this.modalLeft, this.modalTop, this.modalWidth, this.modalHeight);
+        graphics.blitSprite(RenderType::guiTextured, theme.getHeader(), this.modalLeft, this.modalTop, this.modalWidth, 20 + PADDING * 2);
     }
 
     @Override

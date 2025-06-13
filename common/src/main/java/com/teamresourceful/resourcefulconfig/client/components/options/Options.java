@@ -2,6 +2,7 @@ package com.teamresourceful.resourcefulconfig.client.components.options;
 
 import com.teamresourceful.resourcefulconfig.api.annotations.ConfigOption;
 import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigUI;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfigButton;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfigElement;
 import com.teamresourceful.resourcefulconfig.api.types.elements.ResourcefulConfigEntryElement;
@@ -12,7 +13,6 @@ import com.teamresourceful.resourcefulconfig.api.types.entries.ResourcefulConfig
 import com.teamresourceful.resourcefulconfig.api.types.options.EntryData;
 import com.teamresourceful.resourcefulconfig.api.types.options.Option;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.CustomButton;
 import com.teamresourceful.resourcefulconfig.client.components.base.SpriteButton;
 import com.teamresourceful.resourcefulconfig.client.components.options.range.DecimalOptionRange;
@@ -171,7 +171,7 @@ public final class Options {
 
         var reset = SpriteButton.builder(12, 12)
                 .padding(2)
-                .sprite(ModSprites.RESET)
+                .sprite(ResourcefulConfigActiveTheme.current.getReset())
                 .tooltip(UIConstants.RESET)
                 .onPress(resetValue(entry, widgets))
                 .build();

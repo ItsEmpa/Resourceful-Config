@@ -1,9 +1,10 @@
 package com.teamresourceful.resourcefulconfig.client.components.header;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfigCategory;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.ContainerWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.SpriteButton;
 import com.teamresourceful.resourcefulconfig.client.components.options.types.StringOptionWidget;
@@ -25,9 +26,11 @@ public class HeaderControlsWidget extends ContainerWidget {
 
         boolean willGoBack = config instanceof ResourcefulConfigCategory;
 
+        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
+
         this.layout.addChild(SpriteButton.builder(12, 12)
                 .padding(2)
-                .sprite(!willGoBack ? ModSprites.CROSS : ModSprites.CHEVRON_LEFT)
+                .sprite(!willGoBack ? theme.getCross() : theme.getChevronLeft())
                 .onPress(() -> Minecraft.getInstance().screen.onClose())
                 .tooltip(!willGoBack ? UIConstants.CLOSE : UIConstants.BACK)
                 .build());
@@ -50,7 +53,7 @@ public class HeaderControlsWidget extends ContainerWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.CONTAINER, getX(), getY(), width, height);
+        graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getContainer(), getX(), getY(), width, height);
         super.renderWidget(graphics, mouseX, mouseY, partialTicks);
     }
 

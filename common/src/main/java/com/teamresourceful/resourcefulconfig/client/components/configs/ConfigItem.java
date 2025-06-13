@@ -1,9 +1,9 @@
 package com.teamresourceful.resourcefulconfig.client.components.configs;
 
 import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigScreen;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.ContainerWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import net.minecraft.client.Minecraft;
@@ -51,7 +51,7 @@ public class ConfigItem extends ContainerWidget implements ListWidget.Item {
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         graphics.blitSprite(
                 RenderType::guiTextured,
-                ModSprites.ofButton(this.isHovered()),
+                ResourcefulConfigActiveTheme.current.ofButton(this.isHovered()),
                 getX() + UIConstants.PAGE_PADDING, getY() + UIConstants.PAGE_PADDING,
                 width - UIConstants.PAGE_PADDING * 2, height - UIConstants.PAGE_PADDING * 2
         );
