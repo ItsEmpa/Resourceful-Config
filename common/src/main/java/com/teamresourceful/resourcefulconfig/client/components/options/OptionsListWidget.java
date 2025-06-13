@@ -1,6 +1,6 @@
 package com.teamresourceful.resourcefulconfig.client.components.options;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
@@ -13,7 +13,7 @@ public class OptionsListWidget extends ListWidget {
 
     @Override
     public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getContainer(), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.container(), getX(), getY(), getWidth(), getHeight());
         super.renderWidget(graphics, mouseX, mouseY, partialTicks);
     }
 }

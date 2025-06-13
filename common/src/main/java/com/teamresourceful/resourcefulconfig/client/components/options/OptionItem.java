@@ -4,6 +4,7 @@ import com.teamresourceful.resourcefulconfig.api.types.entries.ResourcefulConfig
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
 import com.teamresourceful.resourcefulconfig.client.components.base.ContainerWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -33,8 +34,8 @@ public class OptionItem extends ContainerWidget implements ListWidget.Item {
 
     public OptionItem(Component title, Component description, List<AbstractWidget> widgets) {
         super(0, 0, 0, 0);
-        this.title = title.copy().withColor(UIConstants.TEXT_TITLE);
-        this.description = description.copy().withColor(UIConstants.TEXT_PARAGRAPH);
+        this.title = title.copy().withColor(ActiveTheme.primaryTextColor());
+        this.description = description.copy().withColor(ActiveTheme.secondaryTextColor());
         this.widgets = widgets;
 
         init();

@@ -1,7 +1,8 @@
 package com.teamresourceful.resourcefulconfig.client.screens.base;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
+import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
+import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.client.components.base.SpriteButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -43,7 +44,7 @@ public class ModalOverlay extends OverlayScreen {
         header.addChild(new StringWidget(title, this.font), LayoutSettings::alignVerticallyMiddle);
         header.addChild(
                 SpriteButton.builder(12, 12)
-                        .sprite(ResourcefulConfigActiveTheme.current.getCross())
+                        .sprite(ModSprites.CROSS)
                         .padding(2)
                         .tooltip(CommonComponents.GUI_CANCEL)
                         .onPress(this::onClose)
@@ -71,9 +72,8 @@ public class ModalOverlay extends OverlayScreen {
         super.renderBackground(graphics, mouseX, mouseY, partialTicks);
         renderTransparentBackground(graphics);
 
-        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
-        graphics.blitSprite(RenderType::guiTextured, theme.getContainer(), this.modalLeft, this.modalTop, this.modalWidth, this.modalHeight);
-        graphics.blitSprite(RenderType::guiTextured, theme.getHeader(), this.modalLeft, this.modalTop, this.modalWidth, 20 + PADDING * 2);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.container(), this.modalLeft, this.modalTop, this.modalWidth, this.modalHeight);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.header(), this.modalLeft, this.modalTop, this.modalWidth, 20 + PADDING * 2);
     }
 
     @Override

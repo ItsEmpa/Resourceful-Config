@@ -2,7 +2,7 @@ package com.teamresourceful.resourcefulconfig.client.components.options;
 
 import com.teamresourceful.resourcefulconfig.api.annotations.ConfigOption;
 import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigUI;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfigButton;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfigElement;
 import com.teamresourceful.resourcefulconfig.api.types.elements.ResourcefulConfigEntryElement;
@@ -171,7 +171,7 @@ public final class Options {
 
         var reset = SpriteButton.builder(12, 12)
                 .padding(2)
-                .sprite(ResourcefulConfigActiveTheme.current.getReset())
+                .sprite(ModSprites.RESET)
                 .tooltip(UIConstants.RESET)
                 .onPress(resetValue(entry, widgets))
                 .build();

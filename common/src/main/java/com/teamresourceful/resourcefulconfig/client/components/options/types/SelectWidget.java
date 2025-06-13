@@ -1,12 +1,12 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.info.Translatable;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
+import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import com.teamresourceful.resourcefulconfig.client.screens.base.OverlayScreen;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
@@ -39,15 +39,14 @@ public class SelectWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
-        graphics.blitSprite(RenderType::guiTextured, theme.ofButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
         renderScrollingString(
                 graphics, this.font, this.heading,
                 getX() + 4, getY() + 4,
                 getX() + getWidth() - 16, getY() + getHeight() - 4,
-                UIConstants.TEXT_PARAGRAPH
+                ActiveTheme.secondaryTextColor()
         );
-        graphics.blitSprite(RenderType::guiTextured, theme.getChevronDown(), getX() + getWidth() - 12, getY() + 4, 8, 8);
+        graphics.blitSprite(RenderType::guiTextured, ModSprites.CHEVRON_DOWN, getX() + getWidth() - 12, getY() + 4, 8, 8, ActiveTheme.iconColor());
     }
 
     @Override
@@ -130,9 +129,8 @@ public class SelectWidget extends BaseWidget {
 
         @Override
         public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-            ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
-            graphics.blitSprite(RenderType::guiTextured, theme.getAccent(), getX() - 1, getY() - 1, getWidth() + 2, getHeight() + 2);
-            graphics.blitSprite(RenderType::guiTextured, theme.getButton(), getX(), getY(), getWidth(), getHeight());
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.accent(), getX() - 1, getY() - 1, getWidth() + 2, getHeight() + 2);
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button(), getX(), getY(), getWidth(), getHeight());
             super.renderWidget(graphics, mouseX, mouseY, partialTicks);
         }
     }
@@ -156,18 +154,16 @@ public class SelectWidget extends BaseWidget {
 
         @Override
         protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-            ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
-            graphics.blitSprite(RenderType::guiTextured, theme.ofButton(this.isHovered()), getX() + 1, getY(), getWidth() - 1, getHeight());
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(this.isHovered()), getX() + 1, getY(), getWidth() - 1, getHeight());
             if (this.selected.getAsBoolean()) {
-                graphics.blitSprite(RenderType::guiTextured, theme.getCheck(), getX() + 4, getY() + 2, 8, 8);
+                graphics.blitSprite(RenderType::guiTextured, ModSprites.CHECK, getX() + 4, getY() + 2, 8, 8, ActiveTheme.iconColor());
             }
-            int color = this.isHovered() ? UIConstants.TEXT_TITLE : UIConstants.TEXT_PARAGRAPH;
 
             renderScrollingString(
                     graphics, this.font, Translatable.toComponent(this.option),
                     getX() + 16, getY() + 1,
                     getX() + getWidth() - 4, getY() + getHeight() - 1,
-                    color
+                    ActiveTheme.forText(this.isHovered())
             );
         }
 

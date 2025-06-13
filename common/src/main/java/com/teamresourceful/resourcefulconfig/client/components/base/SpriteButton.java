@@ -1,6 +1,6 @@
 package com.teamresourceful.resourcefulconfig.client.components.base;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.Tooltip;
@@ -31,13 +31,13 @@ public class SpriteButton extends AbstractButton {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        ResourceLocation button = ResourcefulConfigActiveTheme.current.ofButton(isHovered());
-        graphics.blitSprite(RenderType::guiTextured, button, getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(isHovered()), getX(), getY(), getWidth(), getHeight());
         graphics.blitSprite(
             RenderType::guiTextured,
             this.sprite,
             getX() + this.padding, getY() + this.padding,
-            getWidth() - this.padding * 2, getHeight() - this.padding * 2
+            getWidth() - this.padding * 2, getHeight() - this.padding * 2,
+            ActiveTheme.iconColor()
         );
     }
 

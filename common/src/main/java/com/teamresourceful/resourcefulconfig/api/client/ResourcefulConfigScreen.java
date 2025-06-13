@@ -1,8 +1,6 @@
 package com.teamresourceful.resourcefulconfig.api.client;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigThemeDefault;
 import com.teamresourceful.resourcefulconfig.api.loader.Configurator;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.client.ConfigScreen;
 import com.teamresourceful.resourcefulconfig.client.ConfigsScreen;
@@ -56,7 +54,7 @@ public class ResourcefulConfigScreen {
     }
 
     public static Function<@Nullable Screen, Screen> getFactory(String mod) {
-        return getFactory(mod, ResourcefulConfigThemeDefault.INSTANCE);
+        return getFactory(mod, ResourcefulConfigTheme.DEFAULT);
     }
 
     public static Function<@Nullable Screen, Screen> getFactory(String mod, ResourcefulConfigTheme theme) {

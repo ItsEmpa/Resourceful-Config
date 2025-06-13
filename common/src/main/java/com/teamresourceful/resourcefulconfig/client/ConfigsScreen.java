@@ -1,11 +1,11 @@
 package com.teamresourceful.resourcefulconfig.client;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
+import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.client.components.configs.ConfigHeaderItem;
 import com.teamresourceful.resourcefulconfig.client.components.configs.ConfigItem;
 import com.teamresourceful.resourcefulconfig.client.components.configs.ConfigsListWidget;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import com.teamresourceful.resourcefulconfig.common.config.Configurations;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -30,6 +30,8 @@ public class ConfigsScreen extends Screen {
     public ConfigsScreen(Screen parent) {
         super(CommonComponents.EMPTY);
         this.parent = parent;
+
+        ActiveTheme.set(ResourcefulConfigTheme.DEFAULT);
     }
 
     @Override
@@ -65,8 +67,7 @@ public class ConfigsScreen extends Screen {
 
     @Override
     public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
-        graphics.blitSprite(RenderType::guiTextured, theme.getBackground(), 0, 0, this.width, this.height);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.background(), 0, 0, this.width, this.height);
     }
 
     @Override

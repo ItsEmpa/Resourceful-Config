@@ -1,9 +1,8 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import it.unimi.dsi.fastutil.booleans.BooleanConsumer;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -34,13 +33,12 @@ public class BooleanOptionWidget extends BaseWidget {
         boolean value = this.getter.getAsBoolean();
         int offX = getX() + 1;
         int onX = getX() + 1 + HALF_WIDTH;
-        int color = value ? UIConstants.TEXT_PARAGRAPH : UIConstants.TEXT_TITLE;
+        int color = ActiveTheme.forText(!value);
 
-        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
-        graphics.blitSprite(RenderType::guiTextured, theme.getButton(), getX(), getY(), this.width, this.height);
-        graphics.blitSprite(RenderType::guiTextured, theme.ofSwitch(value), value ? onX : offX, getY() + 1, SWITCH_WIDTH, this.height - 2);
-        drawCenteredString(graphics, this.font, CommonComponents.OPTION_OFF, offX + HALF_SWITCH_WIDTH, getY() + 4, color, value && isHovered());
-        drawCenteredString(graphics, this.font, CommonComponents.OPTION_ON, onX + HALF_SWITCH_WIDTH, getY() + 4, color, !value && isHovered());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(false), getX(), getY(), this.width, this.height);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forSwitch(value), value ? onX : offX, getY() + 1, SWITCH_WIDTH, this.height - 2);
+        drawCenteredString(graphics, this.font, CommonComponents.OPTION_OFF, offX + HALF_SWITCH_WIDTH, getY() + 4, color, false);
+        drawCenteredString(graphics, this.font, CommonComponents.OPTION_ON, onX + HALF_SWITCH_WIDTH, getY() + 4, color, false);
     }
 
     @Override

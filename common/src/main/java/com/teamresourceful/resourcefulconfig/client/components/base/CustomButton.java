@@ -1,7 +1,6 @@
 package com.teamresourceful.resourcefulconfig.client.components.base;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
-import com.teamresourceful.resourcefulconfig.client.UIConstants;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
@@ -9,7 +8,6 @@ import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 
 public class CustomButton extends AbstractButton {
 
@@ -24,13 +22,12 @@ public class CustomButton extends AbstractButton {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        ResourceLocation button = ResourcefulConfigActiveTheme.current.ofButton(isHovered());
-        graphics.blitSprite(RenderType::guiTextured, button, getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(isHovered()), getX(), getY(), getWidth(), getHeight());
         renderScrollingString(
             graphics, Minecraft.getInstance().font,
             this.text,
             getX() + 2, getY() + 2, getX() + getWidth() - 2, getY() + getHeight() - 2,
-            UIConstants.TEXT_TITLE
+            ActiveTheme.primaryTextColor()
         );
 
     }

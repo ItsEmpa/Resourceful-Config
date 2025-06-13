@@ -1,9 +1,8 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
-import com.teamresourceful.resourcefulconfig.client.UIConstants;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import com.teamresourceful.resourcefulconfig.client.utils.KeyCodeHelper;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
@@ -36,8 +35,8 @@ public class KeybindOptionWidget extends BaseWidget {
         if (this.isEditing) {
             boolean strikethrough = System.currentTimeMillis() / 500 % 2 == 0;
             return Component.literal("> ")
-                    .withColor(UIConstants.TEXT_PARAGRAPH)
-                    .append(display.withStyle(style -> style.withUnderlined(strikethrough).withColor(UIConstants.TEXT_TITLE)))
+                    .withColor(ActiveTheme.secondaryTextColor())
+                    .append(display.withStyle(style -> style.withUnderlined(strikethrough).withColor(ActiveTheme.primaryTextColor())))
                     .append(Component.literal(" <"));
         }
         return display;
@@ -45,12 +44,12 @@ public class KeybindOptionWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getButton(), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button(), getX(), getY(), getWidth(), getHeight());
 
         renderScrollingString(
             graphics, this.font, getDisplay(),
             getX() + 4, getY() + 2, getX() + getWidth() - 4, getY() + getHeight() - 2,
-            UIConstants.TEXT_PARAGRAPH
+            ActiveTheme.secondaryTextColor()
         );
     }
 

@@ -1,7 +1,7 @@
 package com.teamresourceful.resourcefulconfig.client.components.configs;
 
 import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigScreen;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
 import com.teamresourceful.resourcefulconfig.client.components.base.ContainerWidget;
@@ -22,8 +22,8 @@ public class ConfigItem extends ContainerWidget implements ListWidget.Item {
 
     public ConfigItem(ResourcefulConfig config) {
         super(0, 0, 0, 0);
-        this.title = config.info().title().toComponent().withColor(UIConstants.TEXT_TITLE);
-        this.description = config.info().description().toComponent().withColor(UIConstants.TEXT_PARAGRAPH);
+        this.title = config.info().title().toComponent().withColor(ActiveTheme.primaryTextColor());
+        this.description = config.info().description().toComponent().withColor(ActiveTheme.secondaryTextColor());
         this.config = config;
     }
 
@@ -51,7 +51,7 @@ public class ConfigItem extends ContainerWidget implements ListWidget.Item {
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         graphics.blitSprite(
                 RenderType::guiTextured,
-                ResourcefulConfigActiveTheme.current.ofButton(this.isHovered()),
+                ActiveTheme.forButton(isHovered()),
                 getX() + UIConstants.PAGE_PADDING, getY() + UIConstants.PAGE_PADDING,
                 width - UIConstants.PAGE_PADDING * 2, height - UIConstants.PAGE_PADDING * 2
         );

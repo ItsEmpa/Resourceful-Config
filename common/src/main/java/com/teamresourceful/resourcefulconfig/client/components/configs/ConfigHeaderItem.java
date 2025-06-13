@@ -1,6 +1,6 @@
 package com.teamresourceful.resourcefulconfig.client.components.configs;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
 import com.teamresourceful.resourcefulconfig.client.components.base.ContainerWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
@@ -29,8 +29,8 @@ public class ConfigHeaderItem extends ContainerWidget implements ListWidget.Item
                 .vertical()
                 .spacing(UIConstants.SPACING);
 
-        titleDesc.addChild(new StringWidget(width, 9, UIConstants.MOD_CONFIGS, font).alignLeft());
-        titleDesc.addChild(new StringWidget(width, 9, UIConstants.MOD_CONFIGS_DESCRIPTION, font).alignLeft());
+        titleDesc.addChild(new StringWidget(width, 9, UIConstants.MOD_CONFIGS, font).alignLeft().setColor(ActiveTheme.primaryTextColor()));
+        titleDesc.addChild(new StringWidget(width, 9, UIConstants.MOD_CONFIGS_DESCRIPTION, font).alignLeft().setColor(ActiveTheme.secondaryTextColor()));
 
         titleDesc.arrangeElements();
         titleDesc.setPosition(this.getX() + UIConstants.PAGE_PADDING * 2, this.getY() + UIConstants.PAGE_PADDING * 2);
@@ -42,7 +42,7 @@ public class ConfigHeaderItem extends ContainerWidget implements ListWidget.Item
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         graphics.blitSprite(
                 RenderType::guiTextured,
-                ResourcefulConfigActiveTheme.current.getAccent(),
+                ActiveTheme.accent(),
                 getX() + UIConstants.PAGE_PADDING, getY() + UIConstants.PAGE_PADDING,
                 width - UIConstants.PAGE_PADDING * 2, height - UIConstants.PAGE_PADDING
         );

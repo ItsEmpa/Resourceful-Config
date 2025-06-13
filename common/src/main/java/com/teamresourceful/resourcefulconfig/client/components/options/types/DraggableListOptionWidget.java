@@ -1,15 +1,15 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
 import com.teamresourceful.resourcefulconfig.api.annotations.ConfigOption;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.entries.ResourcefulConfigValueEntry;
 import com.teamresourceful.resourcefulconfig.api.types.options.EntryData;
 import com.teamresourceful.resourcefulconfig.api.types.options.Option;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
+import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.options.misc.draggable.DraggableList;
 import com.teamresourceful.resourcefulconfig.client.screens.base.ModalOverlay;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.layouts.LinearLayout;
@@ -70,22 +70,22 @@ public class DraggableListOptionWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
-        graphics.blitSprite(RenderType::guiTextured, theme.ofButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
 
         int contentWidth = font.width(UIConstants.EDIT) + SPACING + SIZE;
 
         graphics.blitSprite(
                 RenderType::guiTextured,
-                theme.getEdit(),
+                ModSprites.EDIT,
                 getX() + (getWidth() - contentWidth) / 2, getY() + PADDING,
-                SIZE, SIZE
+                SIZE, SIZE,
+                ActiveTheme.iconColor()
         );
         graphics.drawString(
                 font, UIConstants.EDIT,
                 getX() + (getWidth() - contentWidth) / 2 + SIZE + SPACING,
                 getY() + (getHeight() - font.lineHeight) / 2 + 1,
-                UIConstants.TEXT_TITLE
+                ActiveTheme.primaryTextColor()
         );
     }
 
@@ -170,7 +170,7 @@ public class DraggableListOptionWidget extends BaseWidget {
         public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
             super.renderBackground(graphics, mouseX, mouseY, partialTicks);
 
-            graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getButton(), left, top + 20, contentWidth, contentHeight - 20);
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button(), left, top + 20, contentWidth, contentHeight - 20);
         }
     }
 }

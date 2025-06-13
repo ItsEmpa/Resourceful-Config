@@ -1,13 +1,13 @@
 package com.teamresourceful.resourcefulconfig.client.components.header;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfigCategory;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
+import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.ContainerWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.SpriteButton;
 import com.teamresourceful.resourcefulconfig.client.components.options.types.StringOptionWidget;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import com.teamresourceful.resourcefulconfig.client.utils.ConfigSearching;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -26,11 +26,9 @@ public class HeaderControlsWidget extends ContainerWidget {
 
         boolean willGoBack = config instanceof ResourcefulConfigCategory;
 
-        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
-
         this.layout.addChild(SpriteButton.builder(12, 12)
                 .padding(2)
-                .sprite(!willGoBack ? theme.getCross() : theme.getChevronLeft())
+                .sprite(!willGoBack ? ModSprites.CROSS : ModSprites.CHEVRON_LEFT)
                 .onPress(() -> Minecraft.getInstance().screen.onClose())
                 .tooltip(!willGoBack ? UIConstants.CLOSE : UIConstants.BACK)
                 .build());
@@ -42,7 +40,7 @@ public class HeaderControlsWidget extends ContainerWidget {
             return true;
         }, false);
         searchWidget.setWidth(this.width - UIConstants.PAGE_PADDING * 2 - 16 - 5);
-        searchWidget.setHint(Component.literal("Search...").withColor(UIConstants.TEXT_PARAGRAPH));
+        searchWidget.setHint(Component.literal("Search...").withColor(ActiveTheme.secondaryTextColor()));
         this.layout.addChild(searchWidget);
 
         this.layout.arrangeElements();
@@ -53,7 +51,7 @@ public class HeaderControlsWidget extends ContainerWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getContainer(), getX(), getY(), width, height);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.container(), getX(), getY(), width, height);
         super.renderWidget(graphics, mouseX, mouseY, partialTicks);
     }
 

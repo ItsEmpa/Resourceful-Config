@@ -1,6 +1,6 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.EditBox;
@@ -43,7 +43,7 @@ public class StringOptionWidget extends EditBox implements ResetableWidget {
     public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         updateIfFocused();
 
-        graphics.blitSprite(RenderType::guiTextured, ResourcefulConfigActiveTheme.current.getButton(), getX(), getY(), this.width, this.height);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button(), getX(), getY(), this.width, this.height);
 
         graphics.enableScissor(getX() + 4, getY() + 4, getX() + this.width - 4, getY() + this.height - 4);
 

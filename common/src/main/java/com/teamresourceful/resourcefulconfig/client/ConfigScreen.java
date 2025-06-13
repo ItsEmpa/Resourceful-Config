@@ -1,9 +1,7 @@
 package com.teamresourceful.resourcefulconfig.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigActiveTheme;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
-import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigThemeDefault;
+import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfigElement;
 import com.teamresourceful.resourcefulconfig.client.components.categories.CategoriesListWidget;
@@ -12,6 +10,7 @@ import com.teamresourceful.resourcefulconfig.client.components.header.HeaderWidg
 import com.teamresourceful.resourcefulconfig.client.components.options.Options;
 import com.teamresourceful.resourcefulconfig.client.components.options.OptionsListWidget;
 import com.teamresourceful.resourcefulconfig.client.screens.base.CloseableScreen;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import com.teamresourceful.resourcefulconfig.client.utils.ConfigSearching;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -35,15 +34,15 @@ public class ConfigScreen extends Screen implements CloseableScreen {
     private CategoriesListWidget categoriesList = null;
 
     public ConfigScreen(Screen parent, ResourcefulConfig config) {
-        this(parent, config, _ -> List.of(), ResourcefulConfigThemeDefault.INSTANCE);
+        this(parent, config, $ -> List.of(), ResourcefulConfigTheme.DEFAULT);
     }
 
     public ConfigScreen(Screen parent, ResourcefulConfig config, ResourcefulConfigTheme theme) {
-        this(parent, config, _ -> List.of(), theme);
+        this(parent, config, $ -> List.of(), theme);
     }
 
     public ConfigScreen(Screen parent, ResourcefulConfig config, Function<String, List<String>> termCollector) {
-        this(parent, config, termCollector, ResourcefulConfigThemeDefault.INSTANCE);
+        this(parent, config, termCollector, ResourcefulConfigTheme.DEFAULT);
     }
 
     public ConfigScreen(Screen parent, ResourcefulConfig config, Function<String, List<String>> termCollector, ResourcefulConfigTheme theme) {
@@ -52,7 +51,7 @@ public class ConfigScreen extends Screen implements CloseableScreen {
         this.config = config;
         this.termCollector = termCollector;
 
-        ResourcefulConfigActiveTheme.current = theme;
+        ActiveTheme.set(theme);
     }
 
     @Override
@@ -127,8 +126,7 @@ public class ConfigScreen extends Screen implements CloseableScreen {
 
     @Override
     public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        ResourcefulConfigTheme theme = ResourcefulConfigActiveTheme.current;
-        graphics.blitSprite(RenderType::guiTextured, theme.getBackground(), 0, 0, this.width, this.height);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.background(), 0, 0, this.width, this.height);
     }
 
     @Override
