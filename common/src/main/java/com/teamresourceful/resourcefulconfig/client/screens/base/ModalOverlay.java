@@ -2,7 +2,6 @@ package com.teamresourceful.resourcefulconfig.client.screens.base;
 
 import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
-import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.client.components.base.SpriteButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -72,8 +71,8 @@ public class ModalOverlay extends OverlayScreen {
         super.renderBackground(graphics, mouseX, mouseY, partialTicks);
         renderTransparentBackground(graphics);
 
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.container(), this.modalLeft, this.modalTop, this.modalWidth, this.modalHeight);
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.header(), this.modalLeft, this.modalTop, this.modalWidth, 20 + PADDING * 2);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.modal().background(), this.modalLeft, this.modalTop, this.modalWidth, this.modalHeight);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.modal().header(), this.modalLeft, this.modalTop, this.modalWidth, 20 + PADDING * 2);
     }
 
     @Override

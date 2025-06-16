@@ -30,21 +30,19 @@ public class CategoryItem extends BaseWidget implements ListWidget.Item {
 
     @Override
     public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        if (this.isHovered()) {
-            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(true), getX() + 1, getY(), getWidth() - 2, getHeight());
-        }
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.categories().entry(this.isHovered()), getX() + 1, getY(), getWidth() - 2, getHeight());
         renderScrollingString(
                 graphics, Minecraft.getInstance().font,
-                this.config.info().title().toComponent(),
+                this.config.info().title().toComponent().withStyle(ActiveTheme.categories().style(this.isHovered())),
                 getX() + PADDING * 2, getY() + PADDING,
                 getX() + PADDING * 2 + getWidth() - PADDING * 4, getY() + getHeight() - PADDING,
-                ActiveTheme.forText(this.isHovered())
+                -1
         );
     }
 
     @Override
     public void onClick(double d, double e) {
-        Minecraft.getInstance().setScreen(new ConfigScreen(this.screen, this.config, this.termCollector));
+        Minecraft.getInstance().setScreen(new ConfigScreen(this.screen, this.config, this.termCollector, ActiveTheme.get()));
     }
 
     @Override

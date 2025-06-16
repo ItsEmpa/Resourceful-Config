@@ -59,11 +59,11 @@ public class RangeOptionWidget extends BaseWidget {
     public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         updateIfFocused();
 
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(false), getX(), getY(), this.width, this.height);
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(true), getX() + this.padding, getY() + 5, this.width - this.padding * 2, this.height - 10);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.slider().background(), getX(), getY(), this.width, this.height);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.slider().line(), getX() + this.padding, getY() + 5, this.width - this.padding * 2, this.height - 10);
 
         int sliderX = getX() + this.padding + (int) ((this.width - this.padding * 2) * this.getter.getAsDouble()) - (this.height - 6) / 2;
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.container(), sliderX, getY() + 4, this.height - 8, this.height - 8);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.slider().pill(), sliderX, getY() + 4, this.height - 8, this.height - 8);
 
         Component tooltip = null;
 
@@ -78,7 +78,7 @@ public class RangeOptionWidget extends BaseWidget {
                     this.minDisplay,
                     getX() + 2, getY() + 2,
                     getX() + this.padding - 2, getY() + this.height - 2,
-                    0xFFFFFF
+                    ActiveTheme.slider().text()
             );
 
             renderScrollingString(
@@ -86,7 +86,7 @@ public class RangeOptionWidget extends BaseWidget {
                     this.maxDisplay,
                     getX() + this.width - this.padding + 2, getY() + 2,
                     getX() + this.width - 2, getY() + this.height - 2,
-                    0xFFFFFF
+                    ActiveTheme.slider().text()
             );
 
             if (mouseX >= getX() + 2 && mouseX <= getX() + this.padding - 2) {

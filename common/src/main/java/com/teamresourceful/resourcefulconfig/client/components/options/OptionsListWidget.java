@@ -13,7 +13,7 @@ public class OptionsListWidget extends ListWidget {
 
     @Override
     public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.container(), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.section(), getX(), getY(), getWidth(), getHeight());
         super.renderWidget(graphics, mouseX, mouseY, partialTicks);
     }
 }

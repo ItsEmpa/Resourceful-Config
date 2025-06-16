@@ -1,9 +1,10 @@
 package com.teamresourceful.resourcefulconfig.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfigElement;
+import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import com.teamresourceful.resourcefulconfig.client.components.categories.CategoriesListWidget;
 import com.teamresourceful.resourcefulconfig.client.components.categories.CategoryItem;
 import com.teamresourceful.resourcefulconfig.client.components.header.HeaderWidget;
@@ -30,19 +31,11 @@ public class ConfigScreen extends Screen implements CloseableScreen {
     private final ResourcefulConfig config;
     private final Function<String, List<String>> termCollector;
 
-    private OptionsListWidget optionsList = null;
+    private ListWidget optionsList = null;
     private CategoriesListWidget categoriesList = null;
-
-    public ConfigScreen(Screen parent, ResourcefulConfig config) {
-        this(parent, config, $ -> List.of(), ResourcefulConfigTheme.DEFAULT);
-    }
 
     public ConfigScreen(Screen parent, ResourcefulConfig config, ResourcefulConfigTheme theme) {
         this(parent, config, $ -> List.of(), theme);
-    }
-
-    public ConfigScreen(Screen parent, ResourcefulConfig config, Function<String, List<String>> termCollector) {
-        this(parent, config, termCollector, ResourcefulConfigTheme.DEFAULT);
     }
 
     public ConfigScreen(Screen parent, ResourcefulConfig config, Function<String, List<String>> termCollector, ResourcefulConfigTheme theme) {
@@ -56,7 +49,7 @@ public class ConfigScreen extends Screen implements CloseableScreen {
 
     @Override
     protected void rebuildWidgets() {
-        OptionsListWidget oldList = this.optionsList;
+        ListWidget oldList = this.optionsList;
         super.rebuildWidgets();
         this.optionsList.update(oldList);
     }

@@ -34,8 +34,8 @@ public class OptionItem extends ContainerWidget implements ListWidget.Item {
 
     public OptionItem(Component title, Component description, List<AbstractWidget> widgets) {
         super(0, 0, 0, 0);
-        this.title = title.copy().withColor(ActiveTheme.primaryTextColor());
-        this.description = description.copy().withColor(ActiveTheme.secondaryTextColor());
+        this.title = title.copy().withStyle(ActiveTheme.primaryStyle());
+        this.description = description.copy().withStyle(ActiveTheme.secondaryStyle());
         this.widgets = widgets;
 
         init();

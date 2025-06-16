@@ -1,6 +1,6 @@
 package com.teamresourceful.resourcefulconfig.client.components.configs;
 
-import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
+import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
@@ -13,7 +13,7 @@ public class ConfigsListWidget extends ListWidget {
 
     @Override
     public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.container(), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ModSprites.CONTAINER, getX(), getY(), getWidth(), getHeight());
         super.renderWidget(graphics, mouseX, mouseY, partialTicks);
     }
 }

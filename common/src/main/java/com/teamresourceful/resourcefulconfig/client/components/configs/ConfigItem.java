@@ -1,9 +1,9 @@
 package com.teamresourceful.resourcefulconfig.client.components.configs;
 
 import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigScreen;
-import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
+import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.ContainerWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import net.minecraft.client.Minecraft;
@@ -22,8 +22,8 @@ public class ConfigItem extends ContainerWidget implements ListWidget.Item {
 
     public ConfigItem(ResourcefulConfig config) {
         super(0, 0, 0, 0);
-        this.title = config.info().title().toComponent().withColor(ActiveTheme.primaryTextColor());
-        this.description = config.info().description().toComponent().withColor(ActiveTheme.secondaryTextColor());
+        this.title = config.info().title().toComponent().withColor(0xFFFAF9F6);
+        this.description = config.info().description().toComponent().withColor(0xFF727478);
         this.config = config;
     }
 
@@ -51,7 +51,7 @@ public class ConfigItem extends ContainerWidget implements ListWidget.Item {
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         graphics.blitSprite(
                 RenderType::guiTextured,
-                ActiveTheme.forButton(isHovered()),
+                this.isHovered() ? ModSprites.CONFIG_ITEM_HOVER : ModSprites.CONFIG_ITEM,
                 getX() + UIConstants.PAGE_PADDING, getY() + UIConstants.PAGE_PADDING,
                 width - UIConstants.PAGE_PADDING * 2, height - UIConstants.PAGE_PADDING * 2
         );

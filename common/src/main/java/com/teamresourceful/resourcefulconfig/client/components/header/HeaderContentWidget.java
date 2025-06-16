@@ -36,13 +36,19 @@ public class HeaderContentWidget extends ContainerWidget {
                 .spacing(UIConstants.SPACING);
 
         titleDesc.addChild(
-                new StringWidget(twoThirds, 9, config.info().title().toComponent().withColor(ActiveTheme.primaryTextColor()), font)
-                        .alignLeft()
+                new StringWidget(
+                        twoThirds, 9,
+                        config.info().title().toComponent().withStyle(ActiveTheme.primaryStyle()),
+                        font
+                ).alignLeft()
         );
 
         titleDesc.addChild(
-                new StringWidget(twoThirds, 9, config.info().description().toComponent().withColor(ActiveTheme.secondaryTextColor()), font)
-                        .alignLeft()
+                new StringWidget(
+                        twoThirds, 9,
+                        config.info().description().toComponent().withStyle(ActiveTheme.secondaryStyle()),
+                        font
+                ).alignLeft()
         );
 
         LinearLayout links = LinearLayout
@@ -83,7 +89,7 @@ public class HeaderContentWidget extends ContainerWidget {
 
     @Override
     public void renderWidget(@NotNull GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.container(), getX(), getY(), width, height);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.section(), getX(), getY(), width, height);
         super.renderWidget(graphics, mouseX, mouseY, partialTicks);
     }
 

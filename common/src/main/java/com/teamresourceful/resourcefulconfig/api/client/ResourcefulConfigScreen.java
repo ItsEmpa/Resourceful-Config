@@ -1,5 +1,6 @@
 package com.teamresourceful.resourcefulconfig.api.client;
 
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.loader.Configurator;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
 import com.teamresourceful.resourcefulconfig.client.ConfigScreen;
@@ -27,7 +28,7 @@ public class ResourcefulConfigScreen {
      * Gets a screen for the given config.
      */
     public static Screen get(@Nullable Screen parent, ResourcefulConfig config) {
-        return new ConfigScreen(parent, config);
+        return new ConfigScreen(parent, config, ResourcefulConfigTheme.DEFAULT);
     }
 
     /**
@@ -42,15 +43,15 @@ public class ResourcefulConfigScreen {
      * @param termCollector A function that collects additional terms for a given string. ie. color -> ["colour"]
      */
     public static Screen get(@Nullable Screen parent, ResourcefulConfig config, Function<String, List<String>> termCollector) {
-        return new ConfigScreen(parent, config, termCollector);
+        return new ConfigScreen(parent, config, termCollector, ResourcefulConfigTheme.DEFAULT);
     }
 
     public static Screen get(@Nullable Screen parent, String mod, ResourcefulConfigTheme theme) {
-        return new ConfigsScreen(parent, mod);
+        return new ConfigsScreen(parent, mod, theme);
     }
 
     public static Screen get(@Nullable Screen parent, String mod) {
-        return new ConfigsScreen(parent, mod);
+        return new ConfigsScreen(parent, mod, ResourcefulConfigTheme.DEFAULT);
     }
 
     public static Function<@Nullable Screen, Screen> getFactory(String mod) {

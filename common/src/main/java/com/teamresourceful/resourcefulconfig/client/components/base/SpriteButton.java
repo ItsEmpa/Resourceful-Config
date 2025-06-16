@@ -31,13 +31,13 @@ public class SpriteButton extends AbstractButton {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(isHovered()), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button().background(this.isHovered()), getX(), getY(), getWidth(), getHeight());
         graphics.blitSprite(
             RenderType::guiTextured,
             this.sprite,
             getX() + this.padding, getY() + this.padding,
             getWidth() - this.padding * 2, getHeight() - this.padding * 2,
-            ActiveTheme.iconColor()
+            ActiveTheme.button().icon(this.isHovered())
         );
     }
 

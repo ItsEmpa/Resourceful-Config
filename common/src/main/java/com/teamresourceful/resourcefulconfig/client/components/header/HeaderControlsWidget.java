@@ -40,7 +40,7 @@ public class HeaderControlsWidget extends ContainerWidget {
             return true;
         }, false);
         searchWidget.setWidth(this.width - UIConstants.PAGE_PADDING * 2 - 16 - 5);
-        searchWidget.setHint(Component.literal("Search...").withColor(ActiveTheme.secondaryTextColor()));
+        searchWidget.setHint(Component.literal("Search...").withColor(ActiveTheme.secondaryColor()));
         this.layout.addChild(searchWidget);
 
         this.layout.arrangeElements();
@@ -51,7 +51,7 @@ public class HeaderControlsWidget extends ContainerWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.container(), getX(), getY(), width, height);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.section(), getX(), getY(), width, height);
         super.renderWidget(graphics, mouseX, mouseY, partialTicks);
     }
 

@@ -54,14 +54,18 @@ public class DropdownWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button().background(this.isHovered()), getX(), getY(), getWidth(), getHeight());
         renderScrollingString(
-                graphics, this.font, Translatable.toComponent(this.getter.get(), this.title),
+                graphics, this.font, Translatable.toComponent(this.getter.get(), this.title).copy().withStyle(ActiveTheme.button().style(this.isHovered())),
                 getX() + 4, getY() + 4,
                 getX() + getWidth() - 16, getY() + getHeight() - 4,
-                ActiveTheme.secondaryTextColor()
+                -1
         );
-        graphics.blitSprite(RenderType::guiTextured, ModSprites.CHEVRON_DOWN, getX() + getWidth() - 12, getY() + 4, 8, 8, ActiveTheme.iconColor());
+        graphics.blitSprite(
+                RenderType::guiTextured, ModSprites.CHEVRON_DOWN,
+                getX() + getWidth() - 12, getY() + 4, 8, 8,
+                ActiveTheme.button().icon(this.isHovered())
+        );
     }
 
     @Override
@@ -123,17 +127,17 @@ public class DropdownWidget extends BaseWidget {
         public void add(Item item) {
             super.add(item);
             if (!(item instanceof DropdownItem it)) return;
-            var addition = this.items.size() * 12 > this.height ? 10 : 0;
-            if (it.effectiveWidth() + addition <= this.width) return;
+            var addition = this.items.size() * 12 > this.height ? 8 : 0;
+            if (it.effectiveWidth() + addition <= this.width - 4) return;
 
-            this.setWidth(Math.min(it.effectiveWidth() + addition, DropdownWidget.MAX_WIDTH));
+            this.setWidth(Math.min(it.effectiveWidth() + addition + 4, DropdownWidget.MAX_WIDTH));
             this.setX(this.ogX - (this.width - MIN_WIDTH) - 1);
         }
 
         @Override
         public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.accent(), getX() - 1, getY() - 1, getWidth() + 2, getHeight() + 2);
-            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button(), getX(), getY(), getWidth(), getHeight());
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.dropdown().border(), getX() - 1, getY() - 1, getWidth() + 2, getHeight() + 2);
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.dropdown().background(), getX(), getY(), getWidth(), getHeight());
             super.renderWidget(graphics, mouseX, mouseY, partialTicks);
         }
     }
@@ -155,13 +159,14 @@ public class DropdownWidget extends BaseWidget {
 
         @Override
         protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(this.isHovered()), getX() + 1, getY(), getWidth() - 1, getHeight());
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.dropdown().entry(this.isHovered()), getX() + 1, getY(), getWidth() - 1, getHeight());
 
             renderScrollingString(
-                    graphics, this.font, Translatable.toComponent(this.option),
+                    graphics, this.font,
+                    Translatable.toComponent(this.option).copy().withStyle(ActiveTheme.dropdown().style(this.isHovered())),
                     getX() + 4, getY() + 1,
                     getX() + getWidth() - 4, getY() + getHeight() - 1,
-                    ActiveTheme.forText(this.isHovered())
+                    -1
             );
         }
 

@@ -15,6 +15,6 @@ public class SeparatorItem extends OptionItem {
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         super.renderWidget(graphics, mouseX, mouseY, partialTicks);
-        graphics.fill(this.getX() + PADDING, this.getBottom() - 3, this.getRight() - PADDING, this.getBottom() - 2, ActiveTheme.secondaryTextColor());
+        graphics.fill(this.getX() + PADDING, this.getBottom() - 3, this.getRight() - PADDING, this.getBottom() - 2, ActiveTheme.secondaryColor());
     }
 }

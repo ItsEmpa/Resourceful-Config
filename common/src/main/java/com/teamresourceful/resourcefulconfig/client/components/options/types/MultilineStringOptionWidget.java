@@ -31,7 +31,7 @@ public class MultilineStringOptionWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button().background(this.isHovered()), getX(), getY(), getWidth(), getHeight());
 
         int contentWidth = font.width(UIConstants.EDIT) + SPACING + SIZE;
 
@@ -40,13 +40,13 @@ public class MultilineStringOptionWidget extends BaseWidget {
                 ModSprites.EDIT,
                 getX() + (getWidth() - contentWidth) / 2, getY() + PADDING,
                 SIZE, SIZE,
-                ActiveTheme.iconColor()
+                ActiveTheme.button().icon(this.isHovered())
         );
         graphics.drawString(
-                font, UIConstants.EDIT,
+                font, UIConstants.EDIT.copy().withStyle(ActiveTheme.button().style(this.isHovered())),
                 getX() + (getWidth() - contentWidth) / 2 + SIZE + SPACING,
                 getY() + (getHeight() - font.lineHeight) / 2 + 1,
-                ActiveTheme.primaryTextColor()
+                -1
         );
     }
 
@@ -93,7 +93,7 @@ public class MultilineStringOptionWidget extends BaseWidget {
         public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
             super.renderBackground(graphics, mouseX, mouseY, partialTicks);
 
-            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button(), left, top, contentWidth, contentHeight);
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.textbox().background(), left, top, contentWidth, contentHeight);
         }
     }
 }

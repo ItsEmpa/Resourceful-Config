@@ -48,7 +48,7 @@ public class NumberOptionWidget<T extends Number> extends EditBox implements Res
     public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
         updateIfFocused();
 
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button(), getX(), getY(), this.width, this.height);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.textbox().background(), getX(), getY(), this.width, this.height);
 
         graphics.enableScissor(getX() + 4, getY() + 4, getX() + this.width - 4, getY() + this.height - 4);
 

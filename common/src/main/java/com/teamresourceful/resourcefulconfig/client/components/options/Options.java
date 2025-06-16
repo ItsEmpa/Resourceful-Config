@@ -14,6 +14,7 @@ import com.teamresourceful.resourcefulconfig.api.types.options.EntryData;
 import com.teamresourceful.resourcefulconfig.api.types.options.Option;
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
 import com.teamresourceful.resourcefulconfig.client.components.base.CustomButton;
+import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.SpriteButton;
 import com.teamresourceful.resourcefulconfig.client.components.options.range.DecimalOptionRange;
 import com.teamresourceful.resourcefulconfig.client.components.options.range.OptionRange;
@@ -28,7 +29,7 @@ import java.util.function.Function;
 
 public final class Options {
 
-    public static void populateOptions(OptionsListWidget widget, List<ResourcefulConfigElement> elements) {
+    public static void populateOptions(ListWidget widget, List<ResourcefulConfigElement> elements) {
         for (ResourcefulConfigElement element : elements) {
             if (element.isHidden()) continue;
 
@@ -55,7 +56,7 @@ public final class Options {
         }
     }
 
-    private static void populateValueEntry(OptionsListWidget list, ResourcefulConfigValueEntry entry) {
+    private static void populateValueEntry(ListWidget list, ResourcefulConfigValueEntry entry) {
         final EntryData data = entry.options();
 
         List<AbstractWidget> widgets = new ArrayList<>();

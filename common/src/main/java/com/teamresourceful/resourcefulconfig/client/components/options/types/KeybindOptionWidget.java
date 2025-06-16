@@ -35,8 +35,8 @@ public class KeybindOptionWidget extends BaseWidget {
         if (this.isEditing) {
             boolean strikethrough = System.currentTimeMillis() / 500 % 2 == 0;
             return Component.literal("> ")
-                    .withColor(ActiveTheme.secondaryTextColor())
-                    .append(display.withStyle(style -> style.withUnderlined(strikethrough).withColor(ActiveTheme.primaryTextColor())))
+                    .withColor(ActiveTheme.secondaryColor())
+                    .append(display.withStyle(ActiveTheme.primaryStyle().withUnderlined(strikethrough)))
                     .append(Component.literal(" <"));
         }
         return display;
@@ -44,12 +44,12 @@ public class KeybindOptionWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button(), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.textbox().background(), getX(), getY(), getWidth(), getHeight());
 
         renderScrollingString(
             graphics, this.font, getDisplay(),
             getX() + 4, getY() + 2, getX() + getWidth() - 4, getY() + getHeight() - 2,
-            ActiveTheme.secondaryTextColor()
+            ActiveTheme.secondaryColor()
         );
     }
 

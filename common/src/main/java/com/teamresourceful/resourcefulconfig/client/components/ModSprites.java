@@ -4,6 +4,11 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ModSprites {
 
+    public static final ResourceLocation BACKGROUND = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "background");
+    public static final ResourceLocation CONTAINER = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "container");
+    public static final ResourceLocation CONFIG_ITEM = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "button");
+    public static final ResourceLocation CONFIG_ITEM_HOVER = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "button_hover");
+
     public static final ResourceLocation LINK = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "icons/link");
     public static final ResourceLocation CURSEFORGE = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "icons/curseforge");
     public static final ResourceLocation MODRINTH = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "icons/modrinth");

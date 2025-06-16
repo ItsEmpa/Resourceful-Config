@@ -22,12 +22,12 @@ public class CustomButton extends AbstractButton {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(isHovered()), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button().background(this.isHovered()), getX(), getY(), getWidth(), getHeight());
         renderScrollingString(
             graphics, Minecraft.getInstance().font,
-            this.text,
+            this.text.copy().withStyle(ActiveTheme.button().style(this.isHovered())),
             getX() + 2, getY() + 2, getX() + getWidth() - 2, getY() + getHeight() - 2,
-            ActiveTheme.primaryTextColor()
+            -1
         );
 
     }

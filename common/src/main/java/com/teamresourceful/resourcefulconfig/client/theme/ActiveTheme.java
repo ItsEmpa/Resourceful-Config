@@ -1,24 +1,12 @@
 package com.teamresourceful.resourcefulconfig.client.theme;
 
-import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.*;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.Objects;
-
 @ApiStatus.Internal
 public class ActiveTheme {
-
-    private static final ResourceLocation BACKGROUND = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "background");
-    private static final ResourceLocation HEADER = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "header");
-    private static final ResourceLocation CONTAINER = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "container");
-    private static final ResourceLocation ACCENT = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "accent");
-
-    private static final ResourceLocation BUTTON = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "button");
-    private static final ResourceLocation BUTTON_HOVER = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "button_hover");
-
-    private static final ResourceLocation SWITCH_ON = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "switch_on");
-    private static final ResourceLocation SWITCH_OFF = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "switch_off");
 
     private static ResourcefulConfigTheme current;
 
@@ -29,55 +17,74 @@ public class ActiveTheme {
         current = theme;
     }
 
-    public static ResourceLocation forButton(boolean hovered) {
-        if (hovered) {
-            return Objects.requireNonNullElse(current.getButtonHover(), BUTTON_HOVER);
+    public static ResourcefulConfigTheme get() {
+        if (current == null) {
+            throw new IllegalStateException("Active theme has not been set");
         }
-        return Objects.requireNonNullElse(current.getButton(), BUTTON);
-    }
-
-    public static ResourceLocation forSwitch(boolean value) {
-        if (value) {
-            return Objects.requireNonNullElse(current.getSwitchOn(), SWITCH_ON);
-        }
-        return Objects.requireNonNullElse(current.getSwitchOff(), SWITCH_OFF);
+        return current;
     }
 
     public static ResourceLocation background() {
-        return Objects.requireNonNullElse(current.getBackground(), BACKGROUND);
+        return current.getBackground();
     }
 
-    public static ResourceLocation container() {
-        return Objects.requireNonNullElse(current.getContainer(), CONTAINER);
-    }
-
-    public static ResourceLocation header() {
-        return Objects.requireNonNullElse(current.getHeader(), HEADER);
-    }
-
-    public static ResourceLocation accent() {
-        return Objects.requireNonNullElse(current.getAccent(), ACCENT);
-    }
-
-    public static ResourceLocation button() {
-        return Objects.requireNonNullElse(current.getButton(), BUTTON);
+    public static ResourceLocation section() {
+        return current.getSection();
     }
 
     // Colors
 
-    public static int primaryTextColor() {
-        return current.getPrimaryTextColor();
+    public static Style primaryStyle() {
+        return current.getPrimaryStyle();
     }
 
-    public static int secondaryTextColor() {
-        return current.getSecondaryTextColor();
+    public static Style secondaryStyle() {
+        return current.getSecondaryStyle();
     }
 
-    public static int forText(boolean isTitle) {
-        return isTitle ? primaryTextColor() : secondaryTextColor();
+    public static int secondaryColor() {
+        return current.getSecondaryColor();
     }
 
-    public static int iconColor() {
-        return current.getIconColor();
+    // Elements
+
+    public static ResourcefulConfigDropdownTheme dropdown() {
+        return current.dropdown();
+    }
+
+    public static ResourcefulConfigTextBoxTheme textbox() {
+        return current.textbox();
+    }
+
+    public static ResourcefulConfigModalTheme modal() {
+        return current.modal();
+    }
+
+    public static ResourcefulConfigScrollbarTheme scrollbar() {
+        return current.scrollbar();
+    }
+
+    public static ResourcefulConfigCategoriesTheme categories() {
+        return current.categories();
+    }
+
+    public static ResourcefulConfigButtonTheme button() {
+        return current.button();
+    }
+
+    public static ResourcefulConfigColorTheme color() {
+        return current.color();
+    }
+
+    public static ResourcefulConfigDraggableTheme draggable() {
+        return current.draggable();
+    }
+
+    public static ResourcefulConfigToggleTheme toggle() {
+        return current.toggle();
+    }
+
+    public static ResourcefulConfigSliderTheme slider() {
+        return current.slider();
     }
 }

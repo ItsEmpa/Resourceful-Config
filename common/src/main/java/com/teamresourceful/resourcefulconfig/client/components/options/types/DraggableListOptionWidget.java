@@ -70,22 +70,23 @@ public class DraggableListOptionWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button().background(this.isHovered()), getX(), getY(), getWidth(), getHeight());
 
-        int contentWidth = font.width(UIConstants.EDIT) + SPACING + SIZE;
+        var text = UIConstants.EDIT.copy().withStyle(ActiveTheme.button().style(this.isHovered()));
+        int contentWidth = font.width(text) + SPACING + SIZE;
 
         graphics.blitSprite(
                 RenderType::guiTextured,
                 ModSprites.EDIT,
                 getX() + (getWidth() - contentWidth) / 2, getY() + PADDING,
                 SIZE, SIZE,
-                ActiveTheme.iconColor()
+                ActiveTheme.button().icon(this.isHovered())
         );
         graphics.drawString(
-                font, UIConstants.EDIT,
+                font, text,
                 getX() + (getWidth() - contentWidth) / 2 + SIZE + SPACING,
                 getY() + (getHeight() - font.lineHeight) / 2 + 1,
-                ActiveTheme.primaryTextColor()
+                -1
         );
     }
 
@@ -170,7 +171,7 @@ public class DraggableListOptionWidget extends BaseWidget {
         public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
             super.renderBackground(graphics, mouseX, mouseY, partialTicks);
 
-            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button(), left, top + 20, contentWidth, contentHeight - 20);
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.draggable().background(), left, top + 20, contentWidth, contentHeight - 20);
         }
     }
 }

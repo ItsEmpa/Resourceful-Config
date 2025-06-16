@@ -1,6 +1,5 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
-import com.teamresourceful.resourcefulconfig.client.UIConstants;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import it.unimi.dsi.fastutil.booleans.BooleanConsumer;
@@ -33,10 +32,10 @@ public class BooleanOptionWidget extends BaseWidget {
         boolean value = this.getter.getAsBoolean();
         int offX = getX() + 1;
         int onX = getX() + 1 + HALF_WIDTH;
-        int color = ActiveTheme.forText(!value);
+        int color = ActiveTheme.toggle().text(this.isHovered(), value);
 
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(false), getX(), getY(), this.width, this.height);
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forSwitch(value), value ? onX : offX, getY() + 1, SWITCH_WIDTH, this.height - 2);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.toggle().background(this.isHovered()), getX(), getY(), this.width, this.height);
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.toggle().pill(this.isHovered(), value), value ? onX : offX, getY() + 1, SWITCH_WIDTH, this.height - 2);
         drawCenteredString(graphics, this.font, CommonComponents.OPTION_OFF, offX + HALF_SWITCH_WIDTH, getY() + 4, color, false);
         drawCenteredString(graphics, this.font, CommonComponents.OPTION_ON, onX + HALF_SWITCH_WIDTH, getY() + 4, color, false);
     }

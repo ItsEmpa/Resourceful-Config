@@ -4,8 +4,8 @@ import com.teamresourceful.resourcefulconfig.api.types.entries.ResourcefulConfig
 import com.teamresourceful.resourcefulconfig.client.UIConstants;
 import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
+import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import com.teamresourceful.resourcefulconfig.client.components.options.Options;
-import com.teamresourceful.resourcefulconfig.client.components.options.OptionsListWidget;
 import com.teamresourceful.resourcefulconfig.client.screens.base.ModalOverlay;
 import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import net.minecraft.client.gui.GuiGraphics;
@@ -28,7 +28,7 @@ public class ObjectOptionWidget extends BaseWidget {
 
     @Override
     protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.forButton(this.isHovered()), getX(), getY(), getWidth(), getHeight());
+        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.button().background(this.isHovered()), getX(), getY(), getWidth(), getHeight());
 
         int contentWidth = font.width(UIConstants.EDIT) + SPACING + SIZE;
 
@@ -37,13 +37,13 @@ public class ObjectOptionWidget extends BaseWidget {
                 ModSprites.EDIT,
                 getX() + (getWidth() - contentWidth) / 2, getY() + PADDING,
                 SIZE, SIZE,
-                ActiveTheme.iconColor()
+                ActiveTheme.button().icon(this.isHovered())
         );
         graphics.drawString(
-                font, UIConstants.EDIT,
+                font, UIConstants.EDIT.copy().withStyle(ActiveTheme.button().style(this.isHovered())),
                 getX() + (getWidth() - contentWidth) / 2 + SIZE + SPACING,
                 getY() + (getHeight() - font.lineHeight) / 2 + 1,
-                ActiveTheme.primaryTextColor()
+                -1
         );
     }
 
@@ -68,7 +68,7 @@ public class ObjectOptionWidget extends BaseWidget {
         protected void init() {
             super.init();
 
-            OptionsListWidget list = addRenderableWidget(new OptionsListWidget(this.contentWidth, this.contentHeight));
+            ListWidget list = addRenderableWidget(new ListWidget(0, 0, this.contentWidth, this.contentHeight));
             list.setPosition(this.left, this.top);
             Options.populateOptions(list, this.entry.elements());
         }

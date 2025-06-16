@@ -1,7 +1,8 @@
 package com.teamresourceful.resourcefulconfig.client;
 
-import com.teamresourceful.resourcefulconfig.api.client.ResourcefulConfigTheme;
+import com.teamresourceful.resourcefulconfig.api.client.theme.ResourcefulConfigTheme;
 import com.teamresourceful.resourcefulconfig.api.types.ResourcefulConfig;
+import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.configs.ConfigHeaderItem;
 import com.teamresourceful.resourcefulconfig.client.components.configs.ConfigItem;
 import com.teamresourceful.resourcefulconfig.client.components.configs.ConfigsListWidget;
@@ -22,8 +23,9 @@ public class ConfigsScreen extends Screen {
     private ConfigsListWidget configs;
     private @Nullable String modid;
 
-    public ConfigsScreen(Screen parent, @Nullable String modid) {
+    public ConfigsScreen(Screen parent, @Nullable String modid, ResourcefulConfigTheme theme) {
         this(parent);
+        ActiveTheme.set(theme);
         this.modid = modid;
     }
 
@@ -67,7 +69,7 @@ public class ConfigsScreen extends Screen {
 
     @Override
     public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        graphics.blitSprite(RenderType::guiTextured, ActiveTheme.background(), 0, 0, this.width, this.height);
+        graphics.blitSprite(RenderType::guiTextured, ModSprites.BACKGROUND, 0, 0, this.width, this.height);
     }
 
     @Override
