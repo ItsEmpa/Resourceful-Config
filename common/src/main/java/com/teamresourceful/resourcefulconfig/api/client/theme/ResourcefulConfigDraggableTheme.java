@@ -14,8 +14,7 @@ public interface ResourcefulConfigDraggableTheme {
         return hovered ? ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "button_hover") : ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "button");
     }
 
-    // TODO: better name?
-    default ResourceLocation draggable() {
+    default ResourceLocation draghandle() {
         return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "draggable");
     }
 

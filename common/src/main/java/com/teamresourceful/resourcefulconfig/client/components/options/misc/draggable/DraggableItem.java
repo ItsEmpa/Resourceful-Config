@@ -2,8 +2,6 @@ package com.teamresourceful.resourcefulconfig.client.components.options.misc.dra
 
 import com.teamresourceful.resourcefulconfig.api.types.info.TooltipProvider;
 import com.teamresourceful.resourcefulconfig.api.types.info.Translatable;
-import com.teamresourceful.resourcefulconfig.client.UIConstants;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
@@ -33,7 +31,7 @@ public class DraggableItem<T> extends BaseWidget implements ListWidget.Item {
                 x, y, getWidth(), getHeight()
         );
         if (!dragging && hovered) {
-            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.draggable().draggable(), x + 4, y + 4, 8, 8, ActiveTheme.draggable().text(true));
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.draggable().draghandle(), x + 4, y + 4, 8, 8, ActiveTheme.draggable().text(true));
         }
         if (!dragging && hovered) {
             boolean hoveringDelete = x + getWidth() - 16 <= mouseX;
