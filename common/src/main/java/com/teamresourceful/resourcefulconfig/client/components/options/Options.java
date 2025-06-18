@@ -20,6 +20,7 @@ import com.teamresourceful.resourcefulconfig.client.components.options.range.Dec
 import com.teamresourceful.resourcefulconfig.client.components.options.range.OptionRange;
 import com.teamresourceful.resourcefulconfig.client.components.options.range.WholeOptionRange;
 import com.teamresourceful.resourcefulconfig.client.components.options.types.*;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.network.chat.Component;
 
@@ -172,7 +173,7 @@ public final class Options {
 
         var reset = SpriteButton.builder(12, 12)
                 .padding(2)
-                .sprite(ModSprites.RESET)
+                .sprite(ActiveTheme.button().reset())
                 .tooltip(UIConstants.RESET)
                 .onPress(resetValue(entry, widgets))
                 .build();

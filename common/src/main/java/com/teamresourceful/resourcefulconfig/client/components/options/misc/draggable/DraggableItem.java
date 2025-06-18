@@ -33,12 +33,12 @@ public class DraggableItem<T> extends BaseWidget implements ListWidget.Item {
                 x, y, getWidth(), getHeight()
         );
         if (!dragging && hovered) {
-            graphics.blitSprite(RenderType::guiTextured, ModSprites.DRAGGABLE, x + 4, y + 4, 8, 8, ActiveTheme.draggable().text(true));
+            graphics.blitSprite(RenderType::guiTextured, ActiveTheme.draggable().draggable(), x + 4, y + 4, 8, 8, ActiveTheme.draggable().text(true));
         }
         if (!dragging && hovered) {
             boolean hoveringDelete = x + getWidth() - 16 <= mouseX;
             if (canDelete) {
-                graphics.blitSprite(RenderType::guiTextured, ModSprites.DELETE, x + getWidth() - 12, y + 4, 8, 8, ActiveTheme.draggable().text(true));
+                graphics.blitSprite(RenderType::guiTextured, ActiveTheme.draggable().delete(), x + getWidth() - 12, y + 4, 8, 8, ActiveTheme.draggable().text(true));
                 if (this.minecraft.screen != null && hoveringDelete) {
                     this.minecraft.screen.setTooltipForNextRenderPass(Component.literal("Remove"));
                 }

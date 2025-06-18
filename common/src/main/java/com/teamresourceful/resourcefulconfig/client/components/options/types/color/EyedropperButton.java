@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.NativeImage;
 import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.SpriteButton;
 import com.teamresourceful.resourcefulconfig.client.screens.base.OverlayScreen;
+import com.teamresourceful.resourcefulconfig.client.theme.ActiveTheme;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
 import net.minecraft.client.gui.GuiGraphics;
@@ -19,7 +20,7 @@ public class EyedropperButton extends SpriteButton {
     private static final ResourceLocation SCREEN_TEXTURE = ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "dynamic/screen");
 
     public EyedropperButton(HsbState state) {
-        super(12, 12, 2, ModSprites.EYE_DROPPER, () -> {
+        super(12, 12, 2, ActiveTheme.color().eyedropper(), () -> {
             Minecraft minecraft = Minecraft.getInstance();
             Screenshot.takeScreenshot(minecraft.getMainRenderTarget(), image -> {
                 DynamicTexture texture = new DynamicTexture(() -> "Resourceful Config Eyedropper Screenshot", image);

@@ -17,4 +17,8 @@ public interface ResourcefulConfigColorTheme {
     default ResourceLocation presets() {
         return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "accent");
     }
+
+    default ResourceLocation eyedropper() {
+        return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "eye_dropper");
+    }
 }

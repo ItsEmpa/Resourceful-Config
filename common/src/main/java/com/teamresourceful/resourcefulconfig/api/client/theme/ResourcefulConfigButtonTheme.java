@@ -11,6 +11,14 @@ public interface ResourcefulConfigButtonTheme {
         return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "button");
     }
 
+    default ResourceLocation edit() {
+        return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "edit");
+    }
+
+    default ResourceLocation reset() {
+        return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "reset");
+    }
+
     default int icon(boolean hovered) {
         return hovered ? 0xFFFAF9F6 : 0xFF727478;
     }

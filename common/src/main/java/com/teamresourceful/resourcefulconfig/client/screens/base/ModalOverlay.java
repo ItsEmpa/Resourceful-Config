@@ -43,7 +43,7 @@ public class ModalOverlay extends OverlayScreen {
         header.addChild(new StringWidget(title, this.font), LayoutSettings::alignVerticallyMiddle);
         header.addChild(
                 SpriteButton.builder(12, 12)
-                        .sprite(ModSprites.CROSS)
+                        .sprite(ActiveTheme.modal().cross())
                         .padding(2)
                         .tooltip(CommonComponents.GUI_CANCEL)
                         .onPress(this::onClose)

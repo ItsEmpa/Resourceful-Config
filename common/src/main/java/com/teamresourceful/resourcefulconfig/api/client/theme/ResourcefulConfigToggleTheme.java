@@ -16,6 +16,10 @@ public interface ResourcefulConfigToggleTheme {
                 ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "switch_off");
     }
 
+    default ResourceLocation check() {
+        return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "check");
+    }
+
     default int text(boolean hovered, boolean value) {
         return !value ? 0xFFFAF9F6 : 0xFF727478;
     }

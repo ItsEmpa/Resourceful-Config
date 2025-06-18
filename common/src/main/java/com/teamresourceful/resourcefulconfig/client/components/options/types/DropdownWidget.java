@@ -62,7 +62,7 @@ public class DropdownWidget extends BaseWidget {
                 -1
         );
         graphics.blitSprite(
-                RenderType::guiTextured, ModSprites.CHEVRON_DOWN,
+                RenderType::guiTextured, ActiveTheme.dropdown().chevronDown(),
                 getX() + getWidth() - 12, getY() + 4, 8, 8,
                 ActiveTheme.button().icon(this.isHovered())
         );

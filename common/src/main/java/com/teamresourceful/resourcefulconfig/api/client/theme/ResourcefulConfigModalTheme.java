@@ -10,6 +10,14 @@ public interface ResourcefulConfigModalTheme {
         return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "header");
     }
 
+    default ResourceLocation chevronLeft() {
+        return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "chevron_left");
+    }
+
+    default ResourceLocation cross() {
+        return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "cross");
+    }
+
     default ResourceLocation background() {
         return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "container");
     }

@@ -1,7 +1,6 @@
 package com.teamresourceful.resourcefulconfig.client.components.options.types;
 
 import com.teamresourceful.resourcefulconfig.api.types.info.Translatable;
-import com.teamresourceful.resourcefulconfig.client.components.ModSprites;
 import com.teamresourceful.resourcefulconfig.client.components.base.BaseWidget;
 import com.teamresourceful.resourcefulconfig.client.components.base.ListWidget;
 import com.teamresourceful.resourcefulconfig.client.screens.base.OverlayScreen;
@@ -46,7 +45,7 @@ public class SelectWidget extends BaseWidget {
                 -1
         );
         graphics.blitSprite(
-                RenderType::guiTextured, ModSprites.CHEVRON_DOWN,
+                RenderType::guiTextured, ActiveTheme.dropdown().chevronDown(),
                 getX() + getWidth() - 12, getY() + 4, 8, 8,
                 ActiveTheme.button().icon(this.isHovered())
         );
@@ -160,7 +159,7 @@ public class SelectWidget extends BaseWidget {
             graphics.blitSprite(RenderType::guiTextured, ActiveTheme.dropdown().entry(this.isHovered()), getX() + 1, getY(), getWidth() - 1, getHeight());
             if (this.selected.getAsBoolean()) {
                 graphics.blitSprite(
-                        RenderType::guiTextured, ModSprites.CHECK,
+                        RenderType::guiTextured, ActiveTheme.toggle().check(),
                         getX() + 4, getY() + 2, 8, 8,
                         ActiveTheme.dropdown().icon(this.isHovered())
                 );

@@ -19,6 +19,10 @@ public interface ResourcefulConfigDropdownTheme {
         return hovered ? ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "button_hover") : ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "button");
     }
 
+    default ResourceLocation chevronDown() {
+        return ResourceLocation.fromNamespaceAndPath("resourcefulconfig", "chevron_down");
+    }
+
     default int icon(boolean hovered) {
         return hovered ? 0xFFFAF9F6 : 0xFF727478;
     }

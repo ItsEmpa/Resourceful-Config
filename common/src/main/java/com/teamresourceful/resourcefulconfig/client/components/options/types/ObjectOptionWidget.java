@@ -34,7 +34,7 @@ public class ObjectOptionWidget extends BaseWidget {
 
         graphics.blitSprite(
                 RenderType::guiTextured,
-                ModSprites.EDIT,
+                ActiveTheme.button().edit(),
                 getX() + (getWidth() - contentWidth) / 2, getY() + PADDING,
                 SIZE, SIZE,
                 ActiveTheme.button().icon(this.isHovered())

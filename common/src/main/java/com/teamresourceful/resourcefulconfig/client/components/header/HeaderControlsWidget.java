@@ -28,7 +28,7 @@ public class HeaderControlsWidget extends ContainerWidget {
 
         this.layout.addChild(SpriteButton.builder(12, 12)
                 .padding(2)
-                .sprite(!willGoBack ? ModSprites.CROSS : ModSprites.CHEVRON_LEFT)
+                .sprite(!willGoBack ? ActiveTheme.modal().cross() : ActiveTheme.modal().chevronLeft())
                 .onPress(() -> Minecraft.getInstance().screen.onClose())
                 .tooltip(!willGoBack ? UIConstants.CLOSE : UIConstants.BACK)
                 .build());
